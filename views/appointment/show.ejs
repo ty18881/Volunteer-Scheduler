@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Show Appointment Details</h1>
+    <!-- from here, we can update or delete this appointment -->
+    <div class="container">
+        <!-- <form action="/app" method="POST"> -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="date">Date:</label>
+                </div>
+                <div class="col-75">
+                    <%= appt.date %>
+                </div>
+
+            </div>
+            <!-- second row -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="start_time">Start Time:</label>
+                </div>
+                <div class="col-75">
+                    <%= appt.start_time %>
+                    <!-- <input type="text" name="start_time" value="0800" /> -->
+                </div>
+                <!-- skipping the radio buttons for AM and PM for now -->
+            </div>
+            <!-- third row -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="end_time">End Time:</label>
+                </div>
+                <div class="col-75">
+                    <%= appt.end_time %>
+                    <!-- <input type="text" name="end_time" value="1000" /> -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    Create Date:
+                </div>
+                <div class="col-75">
+                    <%= appt.createdAt %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    Created By:
+                </div>
+                <div class="col-75">
+                    <%= appt.creator %>
+                </div>
+            </div>
+            <br>
+            <br>
+            <!-- <input type="submit" class="button" name="" value="Confirm Appointment" /> -->
+        <!-- </form> -->
+    </div>
+</body>
+</html>

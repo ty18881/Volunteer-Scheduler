@@ -48,6 +48,16 @@ const seedData = require("../models/seed_appointment.js");
     });
  });
  
+/** 
+ * SHOW route - Display Details of a single appointment
+ */
 
+ router.get("/:id", (req, res) => {
+     Appointment.findById(req.params.id, (err, foundAppt) =>{
+        //  res.send(`successfully found the appt ${foundAppt}`);
+        res.render("../views/appointment/show.ejs",
+        { appt: foundAppt });
+     });
+ });
 
 module.exports = router;
