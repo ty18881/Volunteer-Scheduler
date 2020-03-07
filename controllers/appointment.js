@@ -6,6 +6,33 @@ const seedData = require("../models/seed_appointment.js");
 
 
 /**
+ * UPDATE/EDIT  - Displays page where we can edit an appointment
+ */
+
+router.get("/:id/edit", (req, res) => {
+    Appointment.findById(req.params.id, (err, foundAppointment) => {
+        res.render("../views/appointment/edit.ejs", {
+            appt: foundAppointment
+        });
+    });
+});
+
+/**
+ * UPDATE - PUT the revised data into the datebase.
+ */
+
+
+ router.put("/:id", (req, res) => {
+    Appointment.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {new: true},
+        (err, updateModel) => {
+            res.redirect(`/app/${req.params.id}`);
+        }
+    )
+})
+/**
  * NEW Route - display page to capture new appointment data
  */
 
