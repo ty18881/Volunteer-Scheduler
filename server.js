@@ -46,17 +46,11 @@ mongoose.connection.once('open', ()=> {
  * Models
  */
 
-// const Product = require("./models/products.js");
-// const seedData = require("./models/seed_products.js");
+const Appointment = require("./models/appointment.js");
+const seedData = require("./models/seed_appointment.js");
 // const User = require("../models/user.js");
 
-/**
- * Controller
- */
-// const productsController = require("./controllers/products.js");
 
-// any request for fruits route get directed to the fruitsController.
-// app.use("/products", productsController);
 
 /**
  * Public Sources
@@ -71,6 +65,22 @@ app.get("/app", (req, res) => {
     }
   });
   
+  app.get("/app/seed", (req, res) => {
+    
+      Appointment.insertMany(seedData, (err, appointments) => {
+          if (err) { 
+              console.log(`Error Seeding the Database: ${err}`);
+          } else {
+              console.log("Added appointment data provided", appointments);
+              console.log(appointments);
+              
+          }
+          //res.redirect("/products");
+          res.send("Appointments Seeding Executed!");
+      });
+   });
+
+
   app.get("/", (req, res) => {
     res.render("index.ejs", {
       currentUser: req.session.currentUser
@@ -82,6 +92,10 @@ app.use("/users", usersController);
 
 const sessionsController = require("./controllers/sessions.js");
 app.use("/sessions", sessionsController);
+
+const appointmentController = require("./controllers/appointment.js");
+app.use("/app", appointmentController);
+
 
 
  /**

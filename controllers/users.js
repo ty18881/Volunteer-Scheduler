@@ -8,6 +8,10 @@ router.get("/new", (req, res) => {
 });
 
 router.post("/", (req, res) => {
+    // username in all lowercase
+    req.body.username = req.body.username.toLowerCase();
+    
+    // encrypt the password before creating record in the database.
   req.body.password = bcrypt.hashSync(
     req.body.password,
     bcrypt.genSaltSync(10)
