@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("../models/users.js");
 const bcrypt = require("bcrypt");
 
+/** Create new users */
 router.get("/new", (req, res) => {
   res.render("users/new.ejs");
 });
@@ -21,4 +22,10 @@ router.post("/", (req, res) => {
   });
 });
 
+/** INDEX Route
+ * Show user his/her appointments
+ */
+router.get("/app", (req, res) => {
+  res.render("./views/users/volunteer/index.ejs");
+})
 module.exports = router;

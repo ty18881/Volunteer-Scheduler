@@ -59,7 +59,8 @@ app.use(express.static('public'));
 
 app.get("/app", (req, res) => {
     if (req.session.currentUser) {
-      res.send("the party");
+
+      res.render("../views/users/volunteer/index.ejs");
     } else {
       res.redirect("/sessions/new");
     }
