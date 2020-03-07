@@ -6,9 +6,56 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hey got to the volunteer index route!</h1>
-    <%= apptList %>
+    <h1>Volunteer Schedule</h1>
+    <!-- list all the appointments in the database -->
+    <!-- can we order by date and current user so the upcoming ones show at the top? -->
+    <div class="container">
+        <table>
+            <tr>
+                <th>
+                    Day
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Start Time
+                </th>
+                <th>
+                    End Time
+                </th>
+                <th>
+                    Create Date
+                </th>
+                <th>
+                    Last Updated
+                </th>
+            </tr>
+            <!-- Now the rows of data -->
+            <% for(let i = 0; i < apptList.length; i++){ %>
+                <tr>
+                    <td>
+                        <a href="/app/<%=apptList[i].id%>/edit">Day of Week-Placeholder</a>
+                    </td>
+                    <td>
+                        <%=apptList[i].start_time %>
+                    </td>
+                    <td>
+                        <%=apptList[i].end_time %>
+                    </td>
+                    <td>
+                        <%=apptList[i].createdAt %>
+                    </td>
+                    <td>
+                        <%=apptList[i].updatedAt %>
+                    </td>
+                </tr>
+            <% } %>
+        </table>
+    </div>
+
     <!-- Adding links to create a new appointment -->
+    <br>
     <a href="/app/new">Create Appointment</a>
 </body>
 </html>

@@ -23,12 +23,7 @@ router.post("/", (req, res) => {
   });
 });
 
-/** INDEX Route
- * Show all appointments
- */
-router.get("/users", (req, res) => {
-  res.render("./views/users/volunteer/index.ejs");
-})
+
 
 /**
  * SHOW Route - show all appointments for the

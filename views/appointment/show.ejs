@@ -9,13 +9,13 @@
     <h1>Show Appointment Details</h1>
     <!-- from here, we can update or delete this appointment -->
     <div class="container">
-        <!-- <form action="/app" method="POST"> -->
+       
             <div class="row">
                 <div class="col-25">
                     <label for="date">Date:</label>
                 </div>
                 <div class="col-75">
-                    <%= appt.date %>
+                    <a href="/app/<%=appt.id%>/edit"><%= appt.date %></a>
                 </div>
 
             </div>
@@ -58,7 +58,8 @@
             </div>
             <br>
             <br>
-            <!-- <input type="submit" class="button" name="" value="Confirm Appointment" /> -->
+             <form action="/app/<%=appt.id%>?_method=DELETE" method="POST">
+            <input type="submit" class="button" name="" value="Delete Appointment" />
         <!-- </form> -->
     </div>
 </body>

@@ -21,7 +21,6 @@ router.get("/:id/edit", (req, res) => {
  * UPDATE - PUT the revised data into the datebase.
  */
 
-
  router.put("/:id", (req, res) => {
     Appointment.findByIdAndUpdate(
         req.params.id,
@@ -86,5 +85,35 @@ router.get("/:id/edit", (req, res) => {
         { appt: foundAppt });
      });
  });
+
+ /**
+  * INDEX Route - Display all appointments
+  */
+
+  router.get("/", (req,res) => {
+    //   res.send("Hitting the Appt Index route");
+    Appointment.find( 
+                {},
+                (error, usrAppt) => {
+                  // console.log(usrAppt);
+                  // console.log("Error: ", error);
+                  res.render("../views/users/volunteer/index.ejs", 
+                    { apptList: usrAppt}
+                );
+                }
+              )
+  });
+
+
+ /**
+ * DELETE Route - remove item from the datastore
+ */
+
+router.delete("/:id", (req, res) =>{
+    console.log("Hitting the Delete route");
+    Appointment.findByIdAndRemove(req.params.id, (err, prodData) =>{
+        res.redirect("/app");
+    });
+});
 
 module.exports = router;

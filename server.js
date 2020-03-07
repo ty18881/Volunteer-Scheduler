@@ -11,6 +11,11 @@ const mongoose = require('mongoose');
 const methodOverride = require("method-override");
 const session = require("express-session");
 
+// adding this to see if we can redirect from this page to our
+// app controller.
+
+const appt = require("./controllers/appointment.js");
+
 const app = express();
 /**
  * Our port
@@ -72,24 +77,24 @@ app.use(express.static('public'));
  * User's INDEX route 
  * */ 
 
-app.get("/users", (req, res) => {
-    if (req.session.currentUser) {
+// app.get("/users", (req, res) => {
+//     if (req.session.currentUser) {
       
-      Appointment.find( 
-        {},
-        (error, usrAppt) => {
-          // console.log(usrAppt);
-          // console.log("Error: ", error);
-          res.render("../views/users/volunteer/index.ejs", 
-            { apptList: usrAppt}
-        );
-        }
-      )
+//       Appointment.find( 
+//         {},
+//         (error, usrAppt) => {
+//           // console.log(usrAppt);
+//           // console.log("Error: ", error);
+//           res.render("../views/users/volunteer/index.ejs", 
+//             { apptList: usrAppt}
+//         );
+//         }
+//       )
       
-    } else {
-      res.redirect("/sessions/new");
-    }
-  });
+//     } else {
+//       res.redirect("/sessions/new");
+//     }
+//   });
   
   app.get("/app/seed", (req, res) => {
     
