@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/users.js");
+const Appointment = require("../models/appointment.js");
 const bcrypt = require("bcrypt");
 
 /** Create new users */
@@ -23,10 +24,32 @@ router.post("/", (req, res) => {
 });
 
 /** INDEX Route
- * Show user his/her appointments
+ * Show all appointments
  */
 router.get("/users", (req, res) => {
   res.render("./views/users/volunteer/index.ejs");
 })
+
+/**
+ * SHOW Route - show all appointments for the
+ * specified volunteer
+ * pull user's unique id or username from the req.body
+ * use that as key in the Appointments document
+ */
+
+ router.get("/:username", (req,res) => {
+  //  res.send("User Show Route reached");
+   
+    Appointment.find(
+      { creator: req.params.username },
+       (err, foundAppts) => {
+        //  res.send(foundAppts);
+     res.render("../views/users/volunteer/show.ejs",
+      { 
+        allAppts: foundAppts,
+        username: req.params.username
+      });
+   });
+ });
 
 module.exports = router;

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show User's Appointments</title>
+</head>
+<body>
+    <h1>Showing <%=username %>'s Appointments</h1>
+    <div class="container">
+        <table>
+            <tr>
+                <th>
+                    Day
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Start Time
+                </th>
+                <th>
+                    End Time
+                </th>
+                <th>
+                    Create Date
+                </th>
+                <th>
+                    Last Updated
+                </th>
+            </tr>
+            <!-- Now the rows of data -->
+            <% for(let i = 0; i < allAppts.length; i++){ %>
+                <tr>
+                    <td>
+                        Day of Week-Placeholder
+                    </td>
+                    <td>
+                        <%=allAppts[i].start_time %>
+                    </td>
+                    <td>
+                        <%=allAppts[i].end_time %>
+                    </td>
+                    <td>
+                        <%=allAppts[i].createdAt %>
+                    </td>
+                    <td>
+                        <%=allAppts[i].updatedAt %>
+                    </td>
+                </tr>
+            <% } %>
+        </table>
+    </div>
+</body>
+</html>
