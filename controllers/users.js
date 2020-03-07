@@ -25,7 +25,8 @@ router.post("/", (req, res) => {
 /** INDEX Route
  * Show user his/her appointments
  */
-router.get("/app", (req, res) => {
+router.get("/users", (req, res) => {
   res.render("./views/users/volunteer/index.ejs");
 })
+
 module.exports = router;

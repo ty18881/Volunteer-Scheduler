@@ -50,17 +50,42 @@ const Appointment = require("./models/appointment.js");
 const seedData = require("./models/seed_appointment.js");
 // const User = require("../models/user.js");
 
+/**
+ * Controllers
+ */
 
+const usersController = require("./controllers/users.js");
+app.use("/users", usersController);
+
+const sessionsController = require("./controllers/sessions.js");
+app.use("/sessions", sessionsController);
+
+const appointmentController = require("./controllers/appointment.js");
+app.use("/app", appointmentController);
 
 /**
  * Public Sources
  */
 app.use(express.static('public'));
 
-app.get("/app", (req, res) => {
-    if (req.session.currentUser) {
+/**
+ * User's INDEX route 
+ * */ 
 
-      res.render("../views/users/volunteer/index.ejs");
+app.get("/users", (req, res) => {
+    if (req.session.currentUser) {
+      
+      Appointment.find( 
+        {},
+        (error, usrAppt) => {
+          // console.log(usrAppt);
+          // console.log("Error: ", error);
+          res.render("../views/users/volunteer/index.ejs", 
+            { apptList: usrAppt}
+        );
+        }
+      )
+      
     } else {
       res.redirect("/sessions/new");
     }
@@ -88,14 +113,7 @@ app.get("/app", (req, res) => {
     });
   });
 
-const usersController = require("./controllers/users.js");
-app.use("/users", usersController);
 
-const sessionsController = require("./controllers/sessions.js");
-app.use("/sessions", sessionsController);
-
-const appointmentController = require("./controllers/appointment.js");
-app.use("/app", appointmentController);
 
 
 

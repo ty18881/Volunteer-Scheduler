@@ -5,9 +5,31 @@ const Appointment = require("../models/appointment.js");
 const seedData = require("../models/seed_appointment.js");
 
 
+/**
+ * NEW Route - display page to capture new appointment data
+ */
 
+ router.get("/new", (req, res) => {
+    //  res.send("On my way to the new appt screen!");
+    res.render("../views/appointment/new.ejs");
+ })
 
+/**
+ * CREATE - Store new appointment in the database
+ */
 
+ router.post("/", (req, res) => {
+     // have to pull the user name from the session
+     // to store in the database.
+
+     req.body.creator = req.session.currentUser.username;
+     console.log(req.body);
+     Appointment.create(req.body, (error, result) =>{
+         res.redirect("/users");
+        // console.log(error);
+        // res.send("back from the database");
+     })
+ })
  
  /**
   * SEED ROUTE - push items into the database for testing
