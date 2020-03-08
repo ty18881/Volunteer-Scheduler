@@ -50,7 +50,7 @@ router.get("/:id/edit", (req, res) => {
      // to store in the database.
 
      req.body.creator = req.session.currentUser.username;
-     console.log(req.body);
+     
      Appointment.create(req.body, (error, result) =>{
          res.redirect("/app");
         // console.log(error);
@@ -81,9 +81,14 @@ router.get("/:id/edit", (req, res) => {
 
  router.get("/:id", (req, res) => {
      Appointment.findById(req.params.id, (err, foundAppt) =>{
-        //  res.send(`successfully found the appt ${foundAppt}`);
+        
+        // do not permit users to edit reservations made by other users.
+        let canEdit = false;
+        foundAppt.creator === req.session.currentUser.username ? canEdit = true : canEdit = false;
         res.render("../views/appointment/show.ejs",
-        { appt: foundAppt });
+        { appt: foundAppt,
+            canEdit: canEdit
+        });
      });
  });
 

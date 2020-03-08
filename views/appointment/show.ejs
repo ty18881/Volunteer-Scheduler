@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
+
     <title>Display Appointment Details</title>
 </head>
 <body>
@@ -11,7 +13,11 @@
     <!-- Navigation -->
 
     <ul class="navigation">
-        <li>
+        <% if (canEdit) {%>
+         <li>
+         <% } else { %>
+            <li hidden>
+        <%} %>
             <a href="/app/<%=appt.id%>/edit">Modify this Appointment</a>
         </li>
         <li>
@@ -29,7 +35,7 @@
                     <label for="date">Date:</label>
                 </div>
                 <div class="col-75">
-                    <%= appt.date %>
+                    <%= moment(appt.date).format("MMM DD YYYY") %>
                 </div>
 
             </div>
@@ -54,14 +60,16 @@
                     <!-- <input type="text" name="end_time" value="1000" /> -->
                 </div>
             </div>
+            <br>
             <div class="row">
                 <div class="col-25">
                     Create Date:
                 </div>
                 <div class="col-75">
-                    <%= appt.createdAt %>
+                    <%= moment(appt.createdAt).format("MMM DD YYYY") %>
                 </div>
             </div>
+            <br>
             <div class="row">
                 <div class="col-25">
                     Created By:
@@ -73,7 +81,11 @@
             <br>
             <br>
              <form action="/app/<%=appt.id%>?_method=DELETE" method="POST">
+                <% if (canEdit) { %>
             <input type="submit" class="button" name="" value="Delete Appointment" />
+            <% } else { %>
+                <input  type="hidden" class="button" name="" value="Delete Appointment" />
+            <%} %>
         <!-- </form> -->
     </div>
 </body>
