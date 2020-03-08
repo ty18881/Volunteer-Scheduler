@@ -10,6 +10,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const methodOverride = require("method-override");
 const session = require("express-session");
+const moment = require("moment");
+
 
 // adding this to see if we can redirect from this page to our
 // app controller.
@@ -17,6 +19,11 @@ const session = require("express-session");
 const appt = require("./controllers/appointment.js");
 
 const app = express();
+
+
+// I want moment to be visible across all the controllers
+
+app.locals.moment = moment;
 /**
  * Our port
  */
@@ -73,28 +80,7 @@ app.use("/app", appointmentController);
  */
 app.use(express.static('public'));
 
-/**
- * User's INDEX route 
- * */ 
 
-// app.get("/users", (req, res) => {
-//     if (req.session.currentUser) {
-      
-//       Appointment.find( 
-//         {},
-//         (error, usrAppt) => {
-//           // console.log(usrAppt);
-//           // console.log("Error: ", error);
-//           res.render("../views/users/volunteer/index.ejs", 
-//             { apptList: usrAppt}
-//         );
-//         }
-//       )
-      
-//     } else {
-//       res.redirect("/sessions/new");
-//     }
-//   });
   
   app.get("/app/seed", (req, res) => {
     

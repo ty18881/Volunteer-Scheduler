@@ -3,10 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous" type="text/javascript"></script>
+    
     <title>Document</title>
 </head>
 <body>
-    <h1>Hitting the Appointment Index Route</h1>
+
+    <h1>Volunteer Schedule</h1>
+        <!-- Navigation -->
+
+    <ul class="navigation">
+        <li>
+            <a href="/sessions">Logout</a>
+        </li>
+        <li>
+            <a href="/app/new">Create new appointment</a>
+        </li>
+    </ul>
+
+    <!-- list all the appointments in the database -->
+    <!-- can we order by date and current user so the upcoming ones show at the top? -->
+    <div class="container">
+        <table>
+            <tr>
+                <th>
+                    Day
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Start Time
+                </th>
+                <th>
+                    End Time
+                </th>
+                <th>
+                    Create Date
+                </th>
+                <th>
+                    Last Updated
+                </th>
+                <th>
+                    Created By
+                </th>
+            </tr>
+            <!-- Now the rows of data -->
+            <% for(let i = 0; i < apptList.length; i++){ %>
+                <tr>
+                    <td>
+                         <% let apptDt = moment(apptList[i].date); %>
+                         
+                                             
+                        <a href="/app/<%=apptList[i].id%>"><%= apptDt.format("ddd") %></a>
+                    </td>
+                    <td>
+                        <%= apptDt.format("MMM DD") %>
+                    </td>
+                    <td>
+                        
+                        <%=apptList[i].start_time %>
+                    </td>
+                    <td>
+                        <%=apptList[i].end_time %>
+                    </td>
+                    <td>
+                        <% let createDate = moment(apptList[i].createdAt); %>
+                        <%=createDate.format("MMM DD HH:mm") %>
+                    </td>
+                    <td>
+                        <% let updateDate = moment(apptList[i].createdAt); %>
+                        <%=updateDate.format("MMM DD HH:mm") %>
+                    </td>
+                    <td>
+                        <%= apptList[i].creator %>
+                    </td>
+                </tr>
+            <% } %>
+        </table>
+    </div>
+
+    <!-- Adding links to create a new appointment -->
+   
     
 </body>
 </html>

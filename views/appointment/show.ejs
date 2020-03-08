@@ -3,10 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <title>Display Appointment Details</title>
 </head>
 <body>
     <h1>Show Appointment Details</h1>
+    <!-- Navigation -->
+
+    <ul class="navigation">
+        <li>
+            <a href="/app/<%=appt.id%>/edit">Modify this Appointment</a>
+        </li>
+        <li>
+            <a href="/app">Display All Appointments</a>
+        </li>
+        <li> 
+            <a href="/app/new">Create New Appointment</a>
+        </li>
+    </ul>
     <!-- from here, we can update or delete this appointment -->
     <div class="container">
        
@@ -15,7 +29,7 @@
                     <label for="date">Date:</label>
                 </div>
                 <div class="col-75">
-                    <a href="/app/<%=appt.id%>/edit"><%= appt.date %></a>
+                    <%= appt.date %>
                 </div>
 
             </div>

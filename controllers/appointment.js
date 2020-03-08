@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
+
 const Appointment = require("../models/appointment.js");
 const seedData = require("../models/seed_appointment.js");
 
@@ -51,7 +52,7 @@ router.get("/:id/edit", (req, res) => {
      req.body.creator = req.session.currentUser.username;
      console.log(req.body);
      Appointment.create(req.body, (error, result) =>{
-         res.redirect("/users");
+         res.redirect("/app");
         // console.log(error);
         // res.send("back from the database");
      })
@@ -97,7 +98,7 @@ router.get("/:id/edit", (req, res) => {
                 (error, usrAppt) => {
                   // console.log(usrAppt);
                   // console.log("Error: ", error);
-                  res.render("../views/users/volunteer/index.ejs", 
+                  res.render("../views/appointment/index.ejs", 
                     { apptList: usrAppt}
                 );
                 }
