@@ -25,26 +25,6 @@ router.post("/", (req, res) => {
 
 
 
-/**
- * SHOW Route - show all appointments for the
- * specified volunteer
- * pull user's unique id or username from the req.body
- * use that as key in the Appointments document
- */
 
- router.get("/:username", (req,res) => {
-  //  res.send("User Show Route reached");
-   
-    Appointment.find(
-      { creator: req.params.username },
-       (err, foundAppts) => {
-        //  res.send(foundAppts);
-     res.render("../views/users/volunteer/show.ejs",
-      { 
-        allAppts: foundAppts,
-        username: req.params.username
-      });
-   });
- });
 
 module.exports = router;

@@ -5,17 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap" rel="stylesheet">
+    <%- include("../partials/head.ejs") %>
     <title>Create new appointment</title>
 </head>
 <body>
     <h1>New Appointment Screen</h1>
 
     <!-- navigation -->
-    <ul class="navigation">
-        <li>
-            <a href="/app">Discard New Item</a>
-        </li>
-    </ul>
+    <%- include("../partials/createnav.ejs") %>
+    
     <div class="container">
         <form action="/app" method="POST">
             <div class="row">

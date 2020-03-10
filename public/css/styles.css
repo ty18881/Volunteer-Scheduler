@@ -40,7 +40,7 @@ body {
   }
   
   .form input:hover {
-    background: #1565C0;
+    background: orange;
   }
 
   .col-25 {

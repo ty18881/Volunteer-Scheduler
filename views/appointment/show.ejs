@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include("../partials/head.ejs") %>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
 
@@ -11,22 +12,8 @@
 <body>
     <h1>Show Appointment Details</h1>
     <!-- Navigation -->
-
-    <ul class="navigation">
-        <% if (canEdit) {%>
-         <li>
-         <% } else { %>
-            <li hidden>
-        <%} %>
-            <a href="/app/<%=appt.id%>/edit">Modify this Appointment</a>
-        </li>
-        <li>
-            <a href="/app">Display All Appointments</a>
-        </li>
-        <li> 
-            <a href="/app/new">Create New Appointment</a>
-        </li>
-    </ul>
+<%- include("../partials/shownav.ejs") %>
+   
     <!-- from here, we can update or delete this appointment -->
     <div class="container">
        

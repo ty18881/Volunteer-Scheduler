@@ -3,24 +3,56 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Create User</title>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+  
+
+  <title>Register for Volunteer Connection!</title>
 </head>
 
 <body>
-  <h1>Create User</h1>
-  <form action="/users" method="POST">
-    <label for="username">UserName:</label>
-    <input type="text" name="username" autofocus />
+  <h1>Register for Volunteer Connection!</h1>
+  <br>
+  <form class="form-horizontal" action="/users" method="POST">
+    <div class="form-group">
+      <label class="control-label col-xs-4" for="username">UserName:</label>
+      <div class="col-xs-4">
+        <input class="form-control" type="text" name="username" autofocus />
+      </div>
+    </div>
     <br>
-    <label for="password">Password:</label>
-    <input type="password" name="password" />
+    <div class="form-group">
+      <label class="control-label col-xs-4" for="password">Password:</label>
+      <div class="col-xs-4">
+        <input class="form-control" type="password" name="password" />
+      </div>
+    </div>
     <br>
-    <p>Please select your role:</p>
-  <input type="radio" id="volunteer" name="role" value="volunteer" checked>
-  <label for="volunteer">Volunteer</label><br>
-  <input type="radio" id="teacher" name="role" value="teacher">
-  <label for="teacher">Teacher</label><br>
-    <input type="submit" value="Create User" />
+    <div class="form-group">
+      <p>Please select your role:</p>
+    <label class="radio-inline"><input type="radio" id="volunteer" name="role" value="volunteer" checked>Volunteer</label>
+    
+    <label class="radio-inline"><input type="radio" id="teacher" name="role" value="teacher">Teacher</label>
+    
+  </div>
+  <div class="col-sm-offset-4 col-xs-4">
+    <input class="btn btn-default form-control" type="submit" value="Create User" />
+  </div>
   </form>
 </body>
 

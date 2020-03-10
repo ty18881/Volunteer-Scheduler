@@ -2,7 +2,8 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
+  <%- include("./partials/head.ejs") %>
+  
   <title></title>
 </head>
 
@@ -11,7 +12,7 @@
     <% if(currentUser) { %>
     Welcome <%=currentUser.username%>!
     <% } else { %>
-    Welcome!
+    Welcome to Volunteer Connection!
     <% } %>
   </h1>
   <% if(currentUser) { %>
