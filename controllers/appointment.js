@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const moment = require("moment-timezone");
 
 
 const Appointment = require("../models/appointment.js");
@@ -23,6 +24,8 @@ router.get("/:id/edit", (req, res) => {
  */
 
  router.put("/:id", (req, res) => {
+    let tempDate = moment(req.body.date).tz("America/New_York");
+    req.body.date = tempDate;
     Appointment.findByIdAndUpdate(
         req.params.id,
         req.body,
@@ -38,7 +41,8 @@ router.get("/:id/edit", (req, res) => {
 
  router.get("/new", (req, res) => {
     //  res.send("On my way to the new appt screen!");
-    res.render("../views/appointment/new.ejs");
+    res.render("../views/appointment/new.ejs",
+    {creator: req.body.creator});
  })
 
 /**
@@ -50,8 +54,13 @@ router.get("/:id/edit", (req, res) => {
      // to store in the database.
 
      req.body.creator = req.session.currentUser.username;
-     
+     // think we have to put a timezone on the date here.
+    
+    let tempDate = moment(req.body.date).tz("America/New_York");
+    req.body.date = tempDate;
+    // req.body.date = moment.tz(`${req.body.date} 12:00`,"America/New_York");
      Appointment.create(req.body, (error, result) =>{
+         
          res.redirect("/app");
         // console.log(error);
         // res.send("back from the database");

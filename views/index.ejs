@@ -15,13 +15,9 @@
     Welcome to Volunteer Connection!
     <% } %>
   </h1>
-  <% if(currentUser) { %>
-  <main>
-    Welcome to the <a href="/app">party</a>
-  </main>
-  <% } %>
+  
   <nav>
-    <ul>
+    <ul class="list-unstyled">
       <li><a href="/sessions/new">Log In</a></li>
       <li><a href="/users/new">Register</a></li>
       <% if(currentUser) { %>
