@@ -14,8 +14,8 @@
                     <label for="date">Date:</label>
                 </div>
                 <div class="col-75">
-                  
-                    <input type="text" name="date" placeholder="YYYY-MM-DD" value="<%=appt.date%>"/>
+                  <% let tempDt = moment(appt.date) %>
+                    <input type="text" name="date" placeholder="YYYY-MM-DD" value="<%=tempDt.format("YYYY-MM-DD")%>"/>
                 </div>
 
             </div>
