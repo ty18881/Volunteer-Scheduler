@@ -10,7 +10,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const methodOverride = require("method-override");
 const session = require("express-session");
-const moment = require("moment");
+const moment = require("moment-timezone");
+
 
 
 // adding this to see if we can redirect from this page to our
@@ -46,6 +47,7 @@ app.use(
     })
   );
 
+  
 /** Database connectivity */
 mongoose.connect('mongodb://localhost:27017/volunteer-scheduler', { 
     useNewUrlParser: true,
