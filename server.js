@@ -51,10 +51,15 @@ app.use(
 /** Database connectivity */
 mongoose.connect('mongodb://localhost:27017/volunteer-scheduler', { 
     useNewUrlParser: true,
-    useUnifiedTopology: true});
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+    useUnifiedTopology: true
+  });
 mongoose.connection.once('open', ()=> {
     console.log('connected to mongo');
 });
+
 
 /**
  * Models
