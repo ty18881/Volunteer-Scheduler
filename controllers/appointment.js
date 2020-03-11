@@ -58,12 +58,11 @@ router.get("/:id/edit", (req, res) => {
     
     let tempDate = moment(req.body.date).tz("America/New_York");
     req.body.date = tempDate;
-    // req.body.date = moment.tz(`${req.body.date} 12:00`,"America/New_York");
+    
      Appointment.create(req.body, (error, result) =>{
          
          res.redirect("/app");
-        // console.log(error);
-        // res.send("back from the database");
+         
      })
  })
  
@@ -113,7 +112,8 @@ router.get("/:id/edit", (req, res) => {
                   // console.log(usrAppt);
                   // console.log("Error: ", error);
                   res.render("../views/appointment/index.ejs", 
-                    { apptList: usrAppt}
+                    { apptList: usrAppt,
+                    username: req.session.username}
                 );
                 }
               )

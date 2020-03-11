@@ -9,26 +9,21 @@
 
 <body>
   <h1>
-    <% if(currentUser) { %>
-    Welcome <%=currentUser.username%>!
-    <% } else { %>
     Welcome to Volunteer Connection!
-    <% } %>
   </h1>
-  
-  <nav>
-    <ul class="list-unstyled">
+  <h2>Sign Up, Help Out</h2>
+  <BR>
+  <nav class="navbar navbar-default">
+    <ul class="nav navbar-nav">
       <li><a href="/sessions/new">Log In</a></li>
-      <li><a href="/users/new">Register</a></li>
-      <% if(currentUser) { %>
-      <li>
-        <form action="/sessions?_method=DELETE" method="POST">
-          <input type="submit" value="Logout" />
-        </form>
-      </li>
-      <% } %>
+      <li><a href="/users/new">New? Register Here!</a></li>
+      
     </ul>
   </nav>
+
+  <div class="main-photo">
+    <img src="../frontPagePhoto.jpg" class="img-thumbnail" alt="Kids at Play" width="50%" height="50%">
+  </div>
 
 </body>
 
