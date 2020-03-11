@@ -12,11 +12,15 @@ const seedData = require("../models/seed_appointment.js");
  */
 
 router.get("/:id/edit", (req, res) => {
-    Appointment.findById(req.params.id, (err, foundAppointment) => {
-        res.render("../views/appointment/edit.ejs", {
-            appt: foundAppointment
+    if (req.session.currentUser) {
+        Appointment.findById(req.params.id, (err, foundAppointment) => {
+            res.render("../views/appointment/edit.ejs", {
+                appt: foundAppointment
+            });
         });
-    });
+    } else {
+        res.redirect("/sessions/new");
+    }
 });
 
 /**
@@ -40,10 +44,13 @@ router.get("/:id/edit", (req, res) => {
  */
 
  router.get("/new", (req, res) => {
-    //  res.send("On my way to the new appt screen!");
-    res.render("../views/appointment/new.ejs",
-    {creator: req.body.creator});
- })
+    if (req.session.currentUser) {
+        res.render("../views/appointment/new.ejs",
+        {creator: req.body.creator});
+    } else {
+        res.redirect("/sessions/new");
+    }
+ });
 
 /**
  * CREATE - Store new appointment in the database
@@ -70,17 +77,18 @@ router.get("/:id/edit", (req, res) => {
   * SEED ROUTE - push items into the database for testing
   */
  router.get("/app/seed", (req,res) => {
-    Appointment.insertMany(seedData, (err, appointments) => {
-        if (err) { 
-            console.log(`Error Seeding the Database: ${err}`);
-        } else {
-            console.log("Added appointment data provided", appointments);
-            console.log(appointments);
-            
-        }
-        //res.redirect("/products");
-        res.send("Appointments Seeding Executed!");
-    });
+    
+        Appointment.insertMany(seedData, (err, appointments) => {
+            if (err) { 
+                console.log(`Error Seeding the Database: ${err}`);
+            } else {
+                console.log("Added appointment data provided", appointments);
+                console.log(appointments);
+                
+            }
+            //res.redirect("/products");
+            res.send("Appointments Seeding Executed!");
+        });
  });
  
 /** 
@@ -88,16 +96,21 @@ router.get("/:id/edit", (req, res) => {
  */
 
  router.get("/:id", (req, res) => {
-     Appointment.findById(req.params.id, (err, foundAppt) =>{
-        
-        // do not permit users to edit reservations made by other users.
-        let canEdit = false;
-        foundAppt.creator === req.session.currentUser.username ? canEdit = true : canEdit = false;
-        res.render("../views/appointment/show.ejs",
-        { appt: foundAppt,
-            canEdit: canEdit
+    if (req.session.currentUser) {
+        Appointment.findById(req.params.id, (err, foundAppt) =>{
+            
+            // do not permit users to edit reservations made by other users.
+            let canEdit = false;
+            foundAppt.creator === req.session.currentUser.username ? canEdit = true : canEdit = false;
+            res.render("../views/appointment/show.ejs",
+            { appt: foundAppt,
+                canEdit: canEdit
+            });
         });
-     });
+    } else {
+        res.redirect("/sessions/new");
+    }
+
  });
 
  /**
@@ -105,18 +118,21 @@ router.get("/:id/edit", (req, res) => {
   */
 
   router.get("/", (req,res) => {
-    //   res.send("Hitting the Appt Index route");
-    Appointment.find( 
-                {},
-                (error, usrAppt) => {
-                  // console.log(usrAppt);
-                  // console.log("Error: ", error);
-                  res.render("../views/appointment/index.ejs", 
-                    { apptList: usrAppt,
-                    username: req.session.username}
-                );
+    if (req.session.currentUser) {
+        Appointment.find( 
+                    {},
+                    (error, usrAppt) => {
+                    // console.log(usrAppt);
+                    // console.log("Error: ", error);
+                    res.render("../views/appointment/index.ejs", 
+                        { apptList: usrAppt,
+                        username: req.session.username}
+                    );
+                    }
+                )
+                } else {
+                    res.redirect("/sessions/new");
                 }
-              )
   });
 
 
@@ -125,10 +141,14 @@ router.get("/:id/edit", (req, res) => {
  */
 
 router.delete("/:id", (req, res) =>{
-    console.log("Hitting the Delete route");
-    Appointment.findByIdAndRemove(req.params.id, (err, prodData) =>{
-        res.redirect("/app");
-    });
+    if (req.session.currentUser) {
+        console.log("Hitting the Delete route");
+        Appointment.findByIdAndRemove(req.params.id, (err, prodData) =>{
+            res.redirect("/app");
+        });
+    } else {
+        res.redirect("/sessions/new");
+    }
 });
 
 module.exports = router;
