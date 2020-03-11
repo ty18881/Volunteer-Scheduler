@@ -6,6 +6,9 @@
  /**
   * Basic elements.
   */
+
+  // ensure our app looks at the .env file
+require("dotenv").config();
 const express = require('express');
 const mongoose = require('mongoose');
 const methodOverride = require("method-override");
@@ -25,10 +28,11 @@ const app = express();
 // I want moment to be visible across all the controllers
 
 app.locals.moment = moment;
+
 /**
- * Our port
+ * Our port - pulled from our .env file
  */
-const port = 3000;
+
 
 /** MIDDLEWARE */
 
@@ -49,7 +53,9 @@ app.use(
 
   
 /** Database connectivity */
-mongoose.connect('mongodb://localhost:27017/volunteer-scheduler', { 
+
+// mongoose.connect('mongodb://localhost:27017/volunteer-scheduler', { 
+  mongoose.connect(process.env.MONGODB_URI, {     
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
@@ -119,6 +125,6 @@ app.use(express.static('public'));
   * LISTENER
   */
 
- app.listen(port, () => {
+ app.listen(process.env.PORT, () => {
     console.log("Server Up and Listening");
 });

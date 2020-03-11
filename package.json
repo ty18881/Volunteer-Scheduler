@@ -1,6 +1,9 @@
 {
   "name": "volunteer-scheduler",
   "version": "1.0.0",
+  "engines": {
+    "node": "13.3.0"
+  },
   "description": "",
   "main": "server.js",
   "scripts": {
@@ -22,6 +25,7 @@
   "dependencies": {
     "bcrypt": "^4.0.1",
     "connect-flash": "^0.1.1",
+    "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "express-session": "^1.17.0",

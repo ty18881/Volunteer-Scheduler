@@ -3,7 +3,7 @@ module.exports = [
         date: "2020-03-09",
         start_time: 0900,
         end_time: 1000,
-        creator: "elonFamily"
+        creator: "elonfamily"
     },
     {
         date: "2020-03-09",
@@ -15,13 +15,13 @@ module.exports = [
         date: "2020-03-09",
         start_time: 1100,
         end_time:  1300,
-        creator:  "elonFamily"
+        creator:  "elonfamily"
     },
     {
         date: "2020-03-09",
         start_time: 1300,
         end_time: 1420,
-        creator: "msLindsey"
+        creator: "mslindsey"
     }
     
 ]
