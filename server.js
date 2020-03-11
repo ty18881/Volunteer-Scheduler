@@ -8,6 +8,7 @@
   */
 
   // ensure our app looks at the .env file
+  
 require("dotenv").config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -45,7 +46,7 @@ app.use(methodOverride("_method"));
 // enables session management
 app.use(
     session({
-      secret: "feedmeseymour", //some random string
+      secret: process.env.SECRET,
       resave: false,
       saveUninitialized: false
     })
