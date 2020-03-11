@@ -15,7 +15,8 @@ router.get("/:id/edit", (req, res) => {
     if (req.session.currentUser) {
         Appointment.findById(req.params.id, (err, foundAppointment) => {
             res.render("../views/appointment/edit.ejs", {
-                appt: foundAppointment
+                appt: foundAppointment,
+                username: req.session.currentUser.username
             });
         });
     } else {
@@ -46,7 +47,9 @@ router.get("/:id/edit", (req, res) => {
  router.get("/new", (req, res) => {
     if (req.session.currentUser) {
         res.render("../views/appointment/new.ejs",
-        {creator: req.body.creator});
+        {creator: req.body.creator,
+            username: req.session.currentUser.username
+        });
     } else {
         res.redirect("/sessions/new");
     }
@@ -104,7 +107,8 @@ router.get("/:id/edit", (req, res) => {
             foundAppt.creator === req.session.currentUser.username ? canEdit = true : canEdit = false;
             res.render("../views/appointment/show.ejs",
             { appt: foundAppt,
-                canEdit: canEdit
+                canEdit: canEdit,
+                username: req.session.currentUser.username
             });
         });
     } else {
@@ -126,7 +130,7 @@ router.get("/:id/edit", (req, res) => {
                     // console.log("Error: ", error);
                     res.render("../views/appointment/index.ejs", 
                         { apptList: usrAppt,
-                        username: req.session.username}
+                        username: req.session.currentUser.username}
                     );
                     }
                 )
