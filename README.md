@@ -24,7 +24,7 @@ We started out with two user personas
     1. Specify times where help IS NOT required/welcome
     2. See who is scheduled to volunteer
 
-*This MVP implements Volunteer jobs to be done only.
+**This MVP implements Volunteer jobs to be done only.**
 
 MVP contains seven REST routes for the Volunteer persona as well as a mechanism for creating new volunteer user accounts and authenticating existing users.
 
