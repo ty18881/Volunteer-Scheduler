@@ -36,6 +36,8 @@ MVP contains seven REST routes for the Volunteer persona as well as a mechanism 
 3.  Implement flash messages to display user prompts.
 4.  Fix positioning of login button on smaller displays
 5.  Automatically log in newly created users
+6.  Restyle SHOW route - show other volunteers for the same day
+![Target Show Route](/images/showRouteEnhancement.jpg)
 
 
 
