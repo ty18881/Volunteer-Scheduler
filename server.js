@@ -8,7 +8,7 @@
   */
 
   // ensure our app looks at the .env file
-  
+
 require("dotenv").config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -117,9 +117,6 @@ app.use(express.static('public'));
       currentUser: req.session.currentUser
     });
   });
-
-
-
 
 
  /**

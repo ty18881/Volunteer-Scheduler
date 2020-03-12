@@ -19,7 +19,8 @@ router.post("/", (req, res) => {
       //res.redirect("/");
       res.redirect("/app");
     } else {
-      res.send("wrong password");
+      // res.send("wrong password");
+      res.render("sessions/new.ejs");
     }
   });
 });

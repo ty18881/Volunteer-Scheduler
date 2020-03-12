@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const appointmentSchema = new mongoose.Schema({
     date:  { type: Date, required: true },
-    start_time: { type: Number, required: true},
-    end_time: { type: Number, required: true},
+    start_time: { type: String, required: true},
+    end_time: { type: String, required: true},
     creator: String
 }, {timestamps: true});
 
