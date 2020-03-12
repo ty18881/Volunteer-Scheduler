@@ -31,6 +31,7 @@ MVP contains seven REST routes for the Volunteer persona as well as a mechanism 
 ### Enhancements in the backlog
 1.  REST routs for the Teacher
 2.  Modify Volunteer INDEX route to resemble a calendar
+![Target Index Route](/images/aspirationalIndexRoute.jpg)
 3.  Implement flash messages to display user prompts.
 4.  Fix positioning of login button on smaller displays
 
