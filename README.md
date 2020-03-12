@@ -8,9 +8,10 @@ https://stormy-springs-89797.herokuapp.com/
 2.  Bootstrap
 3.  EJS and EJS partials
 4.  Express
-5.  Moment - date formatting
-6.  Mongoose
-7.  Node.js
+5.  Javascript
+6.  Moment - date formatting
+7.  Mongoose
+8.  Node.js
 
 ### Development Approach
 We started out with two user personas
